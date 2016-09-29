@@ -79,7 +79,21 @@ export default class Pagination extends React.Component {
 			activeClassName,
         } = this.props;
 
-		const getClassNames = this.getClassNames(allItemsClassName);
+		function getClassNames(allItemsClassName, thisItemClassName) {
+			return function(thisItemClassName) {
+				let ret = "";
+				if (allItemsClassName) {
+					ret += allItemsClassName;
+				}
+				if (thisItemClassName) {
+					ret += " ";
+					ret += thisItemClassName;
+				}
+				return ret;
+			};
+		}
+		
+		const classnames = getClassNames(allItemsClassName);
 
         const paginationInfo = new pagiator(itemsCountPerPage, pageRangeDisplayed)
             .build(totalItemsCount, activePage);
@@ -92,7 +106,7 @@ export default class Pagination extends React.Component {
                         key={i}
                         pageNumber={i}
                         onClick={this.props.onChange}
-						className={getClassNames(pagesClassName)}
+						className={classnames(pagesClassName)}
 						activeClassName={activeClassName}
                     />
                 );
@@ -106,7 +120,7 @@ export default class Pagination extends React.Component {
                 pageNumber={paginationInfo.previous_page}
                 onClick={this.props.onChange}
                 pageText={prevPageText}
-				className={getClassNames(prevPageClassName)}
+				className={classnames(prevPageClassName)}
             />
         );
 
@@ -117,7 +131,7 @@ export default class Pagination extends React.Component {
                 pageNumber={1}
                 onClick={this.props.onChange}
                 pageText={firstPageText}
-				className={getClassNames(firstPageClassName)}
+				className={classnames(firstPageClassName)}
             />
         );
 
@@ -128,7 +142,7 @@ export default class Pagination extends React.Component {
                 pageNumber={paginationInfo.next_page}
                 onClick={this.props.onChange}
                 pageText={nextPageText}
-				className={getClassNames(nextPageClassName)}
+				className={classnames(nextPageClassName)}
             />
         );
 
@@ -139,7 +153,7 @@ export default class Pagination extends React.Component {
                 pageNumber={paginationInfo.total_pages}
                 onClick={this.props.onChange}
                 pageText={lastPageText}
-				className={getClassNames(lastPageClassName)}
+				className={classnames(lastPageClassName)}
             />
         );
 

@@ -32,7 +32,7 @@ describe("<Page />", () => {
     expect(result.props.className).toBe("active");
   });
 
-  it("renders an element as a child if passed an one", () => {
+  it("renders an element as a li > a child if passed an one", () => {
     const child = <strong>1</strong>;
     const context = {
       ...Page.prototype,
@@ -44,6 +44,6 @@ describe("<Page />", () => {
       }
     };
     const result = Page.prototype.render.call(context);
-    expect(result.type).toBe("strong");
+    expect(result.type).toBe("li");
   });
 });

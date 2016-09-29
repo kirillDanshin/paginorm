@@ -71,7 +71,20 @@ var Pagination = (function (_React$Component) {
             var pagesClassName = _props.pagesClassName;
             var activeClassName = _props.activeClassName;
 
-            var getClassNames = this.getClassNames(allItemsClassName);
+            function getClassNames(allItemsClassName, thisItemClassName) {
+                return function (thisItemClassName) {
+                    var ret = "";
+                    if (allItemsClassName) {
+                        ret += allItemsClassName;
+                    }
+                    if (thisItemClassName) {
+                        ret += " ";
+                        ret += thisItemClassName;
+                    }
+                    return ret;
+                };
+            }
+            var classnames = getClassNames(allItemsClassName);
 
             var paginationInfo = new _paginator2["default"](itemsCountPerPage, pageRangeDisplayed).build(totalItemsCount, activePage);
 
@@ -82,7 +95,7 @@ var Pagination = (function (_React$Component) {
                         key: i,
                         pageNumber: i,
                         onClick: this.props.onChange,
-                        className: getClassNames(pagesClassName),
+                        className: classnames(pagesClassName),
                         activeClassName: activeClassName
                     }));
                 }
@@ -94,7 +107,7 @@ var Pagination = (function (_React$Component) {
                 pageNumber: paginationInfo.previous_page,
                 onClick: this.props.onChange,
                 pageText: prevPageText,
-                className: getClassNames(prevPageClassName)
+                className: classnames(prevPageClassName)
             }));
 
             paginationInfo.first_page > 1 && pages.unshift(_react2["default"].createElement(_Page2["default"], {
@@ -103,7 +116,7 @@ var Pagination = (function (_React$Component) {
                 pageNumber: 1,
                 onClick: this.props.onChange,
                 pageText: firstPageText,
-                className: getClassNames(firstPageClassName)
+                className: classnames(firstPageClassName)
             }));
 
             paginationInfo.has_next_page && pages.push(_react2["default"].createElement(_Page2["default"], {
@@ -112,7 +125,7 @@ var Pagination = (function (_React$Component) {
                 pageNumber: paginationInfo.next_page,
                 onClick: this.props.onChange,
                 pageText: nextPageText,
-                className: getClassNames(nextPageClassName)
+                className: classnames(nextPageClassName)
             }));
 
             paginationInfo.last_page !== paginationInfo.total_pages && pages.push(_react2["default"].createElement(_Page2["default"], {
@@ -121,7 +134,7 @@ var Pagination = (function (_React$Component) {
                 pageNumber: paginationInfo.total_pages,
                 onClick: this.props.onChange,
                 pageText: lastPageText,
-                className: getClassNames(lastPageClassName)
+                className: classnames(lastPageClassName)
             }));
 
             return pages;
