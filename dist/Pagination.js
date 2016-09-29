@@ -69,6 +69,7 @@ var Pagination = (function (_React$Component) {
             var firstPageClassName = _props.firstPageClassName;
             var lastPageClassName = _props.lastPageClassName;
             var pagesClassName = _props.pagesClassName;
+            var activeClassName = _props.activeClassName;
 
             var getClassNames = this.getClassNames(allItemsClassName);
 
@@ -81,7 +82,8 @@ var Pagination = (function (_React$Component) {
                         key: i,
                         pageNumber: i,
                         onClick: this.props.onChange,
-                        className: getClassNames(pagesClassName)
+                        className: getClassNames(pagesClassName),
+                        activeClassName: activeClassName
                     }));
                 }
             }
@@ -151,7 +153,8 @@ var Pagination = (function (_React$Component) {
             lastPageClassName: _react.PropTypes.string,
             firstPageClassName: _react.PropTypes.string,
             allItemsClassName: _react.PropTypes.string,
-            pagesClassName: _react.PropTypes.string
+            pagesClassName: _react.PropTypes.string,
+            activeClassName: _react.PropTypes.string
         },
         enumerable: true
     }, {

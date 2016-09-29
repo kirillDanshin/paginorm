@@ -31,6 +31,7 @@ export default class Pagination extends React.Component {
 		firstPageClassName: PropTypes.string,
 		allItemsClassName: PropTypes.string,
 		pagesClassName: PropTypes.string,
+		activeClassName: PropTypes.string,
     }
 
     static defaultProps = {
@@ -74,6 +75,7 @@ export default class Pagination extends React.Component {
 			firstPageClassName,
 			lastPageClassName,
 			pagesClassName,
+			activeClassName,
         } = this.props;
 
 		const getClassNames = this.getClassNames(allItemsClassName);
@@ -90,6 +92,7 @@ export default class Pagination extends React.Component {
                         pageNumber={i}
                         onClick={this.props.onChange}
 						className={getClassNames(pagesClassName)}
+						activeClassName={activeClassName}
                     />
                 );
             }

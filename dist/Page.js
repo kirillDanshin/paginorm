@@ -36,24 +36,30 @@ var Page = (function (_Component) {
     _createClass(Page, [{
         key: "render",
         value: function render() {
-            var _this = this;
+            var _cx;
 
-            var text = this.props.pageText || this.props.pageNumber;
+            var _props = this.props;
+            var _props$activeClassName = _props.activeClassName;
+            var activeClassName = _props$activeClassName === undefined ? "active" : _props$activeClassName;
+            var isActive = _props.isActive;
+            var className = _props.className;
+            var onClick = _props.onClick;
+            var pageNumber = _props.pageNumber;
+            var pageText = _props.pageText;
 
+            var text = pageText || pageNumber;
             // if (React.isValidElement(text)) {
             //     return text;
             // }
 
             return _react2["default"].createElement(
                 "li",
-                { className: (0, _classnames2["default"])(_defineProperty({
-                        "active": this.props.isActive
-                    }, this.props.className, this.props.className || false)) },
+                { className: (0, _classnames2["default"])((_cx = {}, _defineProperty(_cx, activeClassName, isActive), _defineProperty(_cx, className, className || false), _cx)) },
                 _react2["default"].createElement(
                     "a",
                     { onClick: function (e) {
                             e.preventDefault();
-                            _this.props.onClick(_this.props.pageNumber);
+                            onClick(pageNumber);
                         }, href: "#" },
                     text
                 )
@@ -66,7 +72,8 @@ var Page = (function (_Component) {
             pageNumber: _react.PropTypes.number.isRequired,
             onClick: _react.PropTypes.func.isRequired,
             isActive: _react.PropTypes.bool.isRequired,
-            className: _react.PropTypes.string
+            className: _react.PropTypes.string,
+            activeClassName: _react.PropTypes.string
         },
         enumerable: true
     }]);

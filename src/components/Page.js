@@ -11,23 +11,31 @@ export default class Page extends Component {
         onClick: PropTypes.func.isRequired,
         isActive: PropTypes.bool.isRequired,
 		className: PropTypes.string,
+		activeClassName: PropTypes.string,
     }
 
     render() {
-        const text = this.props.pageText || this.props.pageNumber;
-
+		const {
+			activeClassName = "active",
+			isActive,
+			className,
+			onClick,
+			pageNumber,
+			pageText,
+		} = this.props;
+        const text = pageText || pageNumber;
         // if (React.isValidElement(text)) {
         //     return text;
         // }
 
         return (
             <li className={cx({
-					"active": this.props.isActive,
-					[this.props.className]: this.props.className || false,
+					[activeClassName]: isActive,
+					[className]: className || false,
 				})}>
                 <a onClick={ (e) => {
                     e.preventDefault();
-                    this.props.onClick(this.props.pageNumber);
+                    onClick(pageNumber);
                 }} href="#">
                     { text }
                 </a>
