@@ -21,7 +21,7 @@ Very easy to use. Just provide props with total amount of things that you want t
 ```js
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import Pagination from "../components/Pagination";
+import Pagination from "paginorm";
 require("bootstrap/less/bootstrap.less");
 
 class App extends Component {
