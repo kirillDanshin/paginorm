@@ -3,28 +3,34 @@ import pagiator from "paginator";
 import Page from "./Page";
 
 export default class Pagination extends React.Component {
-    static propTypes = {
-      totalItemsCount: PropTypes.number.isRequired,
-      onChange: PropTypes.func.isRequired,
-      activePage: PropTypes.number,
-      pageRangeDisplayed: PropTypes.number,
-      itemsCountPerPage: PropTypes.number,
-      prevPageText: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element
-      ]),
-      nextPageText: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element
-      ]),
-      lastPageText: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element
-      ]),
-      firstPageText: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element
-      ])
+	static propTypes = {
+		totalItemsCount: PropTypes.number.isRequired,
+		onChange: PropTypes.func.isRequired,
+		activePage: PropTypes.number,
+		pageRangeDisplayed: PropTypes.number,
+		itemsCountPerPage: PropTypes.number,
+		prevPageText: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element
+		]),
+		nextPageText: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element
+		]),
+		lastPageText: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element
+		]),
+		firstPageText: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element
+		]),
+		prevPageClassName: PropTypes.string,
+		nextPageClassName: PropTypes.string,
+		lastPageClassName: PropTypes.string,
+		firstPageClassName: PropTypes.string,
+		allItemsClassName: PropTypes.string,
+		pagesClassName: PropTypes.string,
     }
 
     static defaultProps = {
@@ -37,6 +43,20 @@ export default class Pagination extends React.Component {
       lastPageText: "»",
     }
 
+	getClassNames(allItemsClassName, thisItemClassName) {
+		return function(thisItemClassName) {
+			let ret = "";
+			if (allItemsClassName) {
+				ret += allItemsClassName;
+			}
+			if (thisItemClassName) {
+				ret += " ";
+				ret += thisItemClassName;
+			}
+			return ret;
+		};
+	}
+
     buildPages() {
         const pages = [];
         const {
@@ -47,8 +67,16 @@ export default class Pagination extends React.Component {
             nextPageText,
             firstPageText,
             lastPageText,
-            totalItemsCount
+            totalItemsCount,
+			allItemsClassName,
+			prevPageClassName,
+			nextPageClassName,
+			firstPageClassName,
+			lastPageClassName,
+			pagesClassName,
         } = this.props;
+
+		const getClassNames = this.getClassNames(allItemsClassName);
 
         const paginationInfo = new pagiator(itemsCountPerPage, pageRangeDisplayed)
             .build(totalItemsCount, activePage);
@@ -61,6 +89,7 @@ export default class Pagination extends React.Component {
                         key={i}
                         pageNumber={i}
                         onClick={this.props.onChange}
+						className={getClassNames(pagesClassName)}
                     />
                 );
             }
@@ -73,6 +102,7 @@ export default class Pagination extends React.Component {
                 pageNumber={paginationInfo.previous_page}
                 onClick={this.props.onChange}
                 pageText={prevPageText}
+				className={getClassNames(prevPageClassName)}
             />
         );
 
@@ -83,6 +113,7 @@ export default class Pagination extends React.Component {
                 pageNumber={1}
                 onClick={this.props.onChange}
                 pageText={firstPageText}
+				className={getClassNames(firstPageClassName)}
             />
         );
 
@@ -93,6 +124,7 @@ export default class Pagination extends React.Component {
                 pageNumber={paginationInfo.next_page}
                 onClick={this.props.onChange}
                 pageText={nextPageText}
+				className={getClassNames(nextPageClassName)}
             />
         );
 
@@ -103,6 +135,7 @@ export default class Pagination extends React.Component {
                 pageNumber={paginationInfo.total_pages}
                 onClick={this.props.onChange}
                 pageText={lastPageText}
+				className={getClassNames(lastPageClassName)}
             />
         );
 

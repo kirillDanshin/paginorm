@@ -36,6 +36,21 @@ var Pagination = (function (_React$Component) {
     }
 
     _createClass(Pagination, [{
+        key: "getClassNames",
+        value: function getClassNames(allItemsClassName, thisItemClassName) {
+            return function (thisItemClassName) {
+                var ret = "";
+                if (allItemsClassName) {
+                    ret += allItemsClassName;
+                }
+                if (thisItemClassName) {
+                    ret += " ";
+                    ret += thisItemClassName;
+                }
+                return ret;
+            };
+        }
+    }, {
         key: "buildPages",
         value: function buildPages() {
             var pages = [];
@@ -48,6 +63,14 @@ var Pagination = (function (_React$Component) {
             var firstPageText = _props.firstPageText;
             var lastPageText = _props.lastPageText;
             var totalItemsCount = _props.totalItemsCount;
+            var allItemsClassName = _props.allItemsClassName;
+            var prevPageClassName = _props.prevPageClassName;
+            var nextPageClassName = _props.nextPageClassName;
+            var firstPageClassName = _props.firstPageClassName;
+            var lastPageClassName = _props.lastPageClassName;
+            var pagesClassName = _props.pagesClassName;
+
+            var getClassNames = this.getClassNames(allItemsClassName);
 
             var paginationInfo = new _paginator2["default"](itemsCountPerPage, pageRangeDisplayed).build(totalItemsCount, activePage);
 
@@ -57,7 +80,8 @@ var Pagination = (function (_React$Component) {
                         isActive: i === activePage,
                         key: i,
                         pageNumber: i,
-                        onClick: this.props.onChange
+                        onClick: this.props.onChange,
+                        className: getClassNames(pagesClassName)
                     }));
                 }
             }
@@ -67,7 +91,8 @@ var Pagination = (function (_React$Component) {
                 key: "prev" + paginationInfo.previous_page,
                 pageNumber: paginationInfo.previous_page,
                 onClick: this.props.onChange,
-                pageText: prevPageText
+                pageText: prevPageText,
+                className: getClassNames(prevPageClassName)
             }));
 
             paginationInfo.first_page > 1 && pages.unshift(_react2["default"].createElement(_Page2["default"], {
@@ -75,7 +100,8 @@ var Pagination = (function (_React$Component) {
                 key: 1,
                 pageNumber: 1,
                 onClick: this.props.onChange,
-                pageText: firstPageText
+                pageText: firstPageText,
+                className: getClassNames(firstPageClassName)
             }));
 
             paginationInfo.has_next_page && pages.push(_react2["default"].createElement(_Page2["default"], {
@@ -83,7 +109,8 @@ var Pagination = (function (_React$Component) {
                 key: "next" + paginationInfo.next_page,
                 pageNumber: paginationInfo.next_page,
                 onClick: this.props.onChange,
-                pageText: nextPageText
+                pageText: nextPageText,
+                className: getClassNames(nextPageClassName)
             }));
 
             paginationInfo.last_page !== paginationInfo.total_pages && pages.push(_react2["default"].createElement(_Page2["default"], {
@@ -91,7 +118,8 @@ var Pagination = (function (_React$Component) {
                 key: paginationInfo.total_pages,
                 pageNumber: paginationInfo.total_pages,
                 onClick: this.props.onChange,
-                pageText: lastPageText
+                pageText: lastPageText,
+                className: getClassNames(lastPageClassName)
             }));
 
             return pages;
@@ -117,7 +145,13 @@ var Pagination = (function (_React$Component) {
             prevPageText: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
             nextPageText: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
             lastPageText: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
-            firstPageText: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element])
+            firstPageText: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
+            prevPageClassName: _react.PropTypes.string,
+            nextPageClassName: _react.PropTypes.string,
+            lastPageClassName: _react.PropTypes.string,
+            firstPageClassName: _react.PropTypes.string,
+            allItemsClassName: _react.PropTypes.string,
+            pagesClassName: _react.PropTypes.string
         },
         enumerable: true
     }, {

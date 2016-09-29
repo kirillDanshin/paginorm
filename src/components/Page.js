@@ -9,7 +9,8 @@ export default class Page extends Component {
         ]),
         pageNumber: PropTypes.number.isRequired,
         onClick: PropTypes.func.isRequired,
-        isActive: PropTypes.bool.isRequired
+        isActive: PropTypes.bool.isRequired,
+		className: PropTypes.string,
     }
 
     render() {
@@ -20,7 +21,10 @@ export default class Page extends Component {
         // }
 
         return (
-            <li className={cx({ "active": this.props.isActive })}>
+            <li className={cx({
+					"active": this.props.isActive,
+					[this.props.className]: this.props.className || false,
+				})}>
                 <a onClick={ (e) => {
                     e.preventDefault();
                     this.props.onClick(this.props.pageNumber);

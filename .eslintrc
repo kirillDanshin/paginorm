@@ -1,20 +1,23 @@
 {
-  "env": {"browser": true, "commonjs": true, node: true},
-  "extends": "airbnb",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "parser": "babel-eslint",
   "rules": {
-    "indent": [2, "tab"],
-    "import/no-unresolved": [2, {"commonjs": true, "amd": true}],
-    "new-cap": ["error", { "capIsNew": false }],
-    "react/prop-types": 0,
-    "react/jsx-indent": [2, "tab"],
-    "react/jsx-indent-props": [2, "tab"],
-    "react/jsx-closing-bracket-location": [1, {selfClosing: 'props-aligned', nonEmpty: 'after-props'}],
-    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
-    "react/prefer-stateless-function": 0,
-    "no-console": 0,
+    "no-undef": 2,
+    "semi": [2, "always"],
+    "quotes": [2, "double"],
+    "strict": [2, "never"],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
   },
-  "settings": {
-    "import/ignore": "node_modules"
-  }
+  "plugins": [
+    "react"
+  ]
 }
