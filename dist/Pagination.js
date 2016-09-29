@@ -130,15 +130,17 @@ var Pagination = (function (_React$Component) {
         key: "render",
         value: function render() {
             var pages = this.buildPages();
+            var className = this.props.className || "pagination";
             return _react2["default"].createElement(
                 "ul",
-                { className: "pagination" },
+                { className: className },
                 pages
             );
         }
     }], [{
         key: "propTypes",
         value: {
+            className: _react.PropTypes.string,
             totalItemsCount: _react.PropTypes.number.isRequired,
             onChange: _react.PropTypes.func.isRequired,
             activePage: _react.PropTypes.number,

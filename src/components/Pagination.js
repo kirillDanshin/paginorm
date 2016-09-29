@@ -4,6 +4,7 @@ import Page from "./Page";
 
 export default class Pagination extends React.Component {
 	static propTypes = {
+		className: PropTypes.string,
 		totalItemsCount: PropTypes.number.isRequired,
 		onChange: PropTypes.func.isRequired,
 		activePage: PropTypes.number,
@@ -147,8 +148,9 @@ export default class Pagination extends React.Component {
 
     render() {
         const pages = this.buildPages();
+		const className = this.props.className || "pagination";
         return (
-            <ul className="pagination">{pages}</ul>
+            <ul className={className}>{pages}</ul>
         );
     }
 }

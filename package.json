@@ -1,6 +1,6 @@
 {
-  "name": "react-js-pagination",
-  "version": "2.0.0",
+  "name": "paginorm",
+  "version": "1.0.0",
   "description": "Simple, easy to use component for pagination. Compatible with bootstrap paginator stylesheets",
   "main": "./dist/Pagination.js",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vayser/react-js-pagination"
+    "url": "https://github.com/kirillDanshin/paginorm"
   },
   "keywords": [
     "react",
@@ -30,12 +30,12 @@
     "react-transform",
     "react-component"
   ],
-  "author": "Sergey Vayser <wice24@gmail.com> (http://github.com/vayser)",
-  "license": "CC0-1.0",
+  "author": "Kirill Danshin <k@guava.by>",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/vayser/react-js-pagination/issues"
+    "url": "https://github.com/kirillDanshin/paginorm/issues"
   },
-  "homepage": "https://github.com/vayser/react-js-pagination",
+  "homepage": "https://github.com/kirillDanshin/paginorm",
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.4.7",
