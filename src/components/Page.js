@@ -15,9 +15,9 @@ export default class Page extends Component {
     render() {
         const text = this.props.pageText || this.props.pageNumber;
 
-        if (React.isValidElement(text)) {
-            return text;
-        }
+        // if (React.isValidElement(text)) {
+        //     return text;
+        // }
 
         return (
             <li className={cx({ "active": this.props.isActive })}>
